@@ -38,7 +38,11 @@ numbers is sorted in increasing order.      数字的排序是升，从小到大
 -1000 <= target <= 1000                     目标，即是两者之和 在 ： -1000 和1000 之间
 Only one valid answer exists.
 
-答案：
+
+
+答案：（用 Python 解答）
+
+
 class Solution:
     def twoSum(self,nums, target) :           定义twosum（自己，测试的数字，目标（两者之和））
         d = {}                              先设置一个空集
