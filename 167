@@ -47,7 +47,7 @@ class Solution:
             if m in d:                       如果m 在新建的d子集中，得出 d 子集，并且  + 1 ， 因为序号从0开始
                 return [d[m]+1, i+1]
             else:
-                d[nums[i]]= i  
+                d[nums[i]]= i               不然的话，先把数字num【i】加入 d 子集中去，再循环下一个
 
 
 
