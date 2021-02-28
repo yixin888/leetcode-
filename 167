@@ -1,20 +1,19 @@
 167. Two Sum II - Input array is sorted
 Easy
 
-2393
-
-692
-
-Add to List
-
-Share
 Given an array of integers numbers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
 
 Return the indices of the two numbers (1-indexed) as an integer array answer of size 2, where 1 <= answer[0] < answer[1] <= numbers.length.
 
 You may assume that each input would have exactly one solution and you may not use the same element twice.
 
- 
+分析：
+题目的要求是：
+1.题目给出一个数组，里面有很多数字，已经排好序，从小到大ascending order， 
+2.找出两个数字，把它们加起来得到一个具体的数字，即题目要求的数字
+3.return 输出index of两个数字[0,1,2,3],index 是从0 开始向右数
+4.相同的两个数字不要循环测试两次以上
+
 
 Example 1:
 
@@ -31,13 +30,25 @@ Input: numbers = [-1,0], target = -1
 Output: [1,2]
  
 
-Constraints:
+Constraints:  （限定，约束）
 
-2 <= numbers.length <= 3 * 104
--1000 <= numbers[i] <= 1000
-numbers is sorted in increasing order.
--1000 <= target <= 1000
+2 <= numbers.length <= 3 * 104             这里给出数字长度： 大于2，小于3*104 个数字
+-1000 <= numbers[i] <= 1000                数字的大小在 ： -1000 和1000 之间
+numbers is sorted in increasing order.      数字的排序是升，从小到大升
+-1000 <= target <= 1000                     目标，即是两者之和 在 ： -1000 和1000 之间
 Only one valid answer exists.
 
+答案：
+class Solution:
+    def twoSum(self,nums, target) :           定义twosum（自己，测试的数字，目标（两者之和））
+        d = {}                              先设置一个空集
+        for i in range(len(nums)):           for i in range(循环多少次的次数)
+            m = target - nums[i]             设置m，  m = 两者之和 - 数字
+            if m in d:                       如果m 在新建的d子集中，得出 d 子集，并且  + 1 ， 因为序号从0开始
+                return [d[m]+1, i+1]
+            else:
+                d[nums[i]]= i  
 
-分析
+
+
+
