@@ -1,0 +1,49 @@
+633. Sum of Square Numbers
+
+Given a non-negative integer c, decide whether there're two integers a and b such that a2 + b2 = c.
+题目分析： 
+1.给出 非负数 整数 c， 检查 c 是否等于 a 和 b 的平方和
+2. a 或者 b 其中一个可以为0
+
+
+Example 1:
+
+Input: c = 5
+Output: true
+Explanation: 1 * 1 + 2 * 2 = 5
+Example 2:
+
+Input: c = 3
+Output: false
+Example 3:
+
+Input: c = 4
+Output: true
+Example 4:
+
+Input: c = 2
+Output: true
+Example 5:
+
+Input: c = 1
+Output: true
+
+
+答案：
+class Solution {
+    public boolean judgeSquareSum(int c) {
+        if (c < 0) return false;
+        int i = 0, j= (int) Math.sqrt(c);
+        while (i <= j) {
+            int powSum = i * i + j * j;
+            if (powSum == c ){
+                return true;
+            } else if (powSum > c ) {
+                j--;
+            } else {
+                i++;
+            }
+        }
+        return false;
+    }
+}
