@@ -1,0 +1,43 @@
+680. Valid Palindrome II
+Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome.
+
+题目分析：
+1.给出一个非空的字符串
+2.你可以删除多个字母
+3.在满足这种条件下： 判断能否 前面 和 后面倒数 是否一样的字母， 前后同时遍历
+
+Example 1:
+
+Input: "aba"
+Output: True
+Example 2:
+
+Input: "abca"
+Output: True
+Explanation: You could delete the character 'c'.
+Note:
+
+The string will only contain lowercase characters a-z. The maximum length of the string is 50000.
+
+
+答案：
+class Solution {                                                                      class Solution: 标准
+    public boolean validPalindrome(String s) {                                        public + class类（boolean 布尔，判断真假）
+        for(int i = 0, j = s.length()-1; i < j; i++, j--){                  for loop 循环遍历满足条件 for（前面从序号为0开始； 后面字母从倒数第一开始；排序前面小于后面，依次进行）
+            if(s.charAt(i) != s.charAt(j)) {                                           if （+条件语句）如果前面的字母 不等于 后面字母
+                return isPalindrome(s, i, j-1) || isPalindrome(s, i + 1, j);                则删除其中一个字母（要么删除前面，要么后面）输出剩余的字母
+            }
+        }
+        return true;                                                          跳出for loop循环，即不满足不等于的条件，意思是两者相等，输出真
+    }
+    private boolean isPalindrome(String s, int i, int j) {                     private 只能被自己访问，不能像public 一样被其他类访问，再次遍历
+        while(i< j) {                                                        当 i < j , while loop 循环
+            if (s.charAt(i++) != s.charAt(j--)) {                          if （+条件语句）如果前面的字母 不等于 后面字母
+                return false;                                                   输出假
+            }
+        }
+        return true;                                                       跳出while loop 循环，即不满足不等于的条件，意思是两者相等，输出真
+    }
+}
+
+
