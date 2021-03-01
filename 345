@@ -1,0 +1,48 @@
+345. Reverse Vowels of a String
+Write a function that takes a string as input and reverse only the vowels of a string.
+
+题目分析:
+1.给出一个字符串， 将它的字母从 前 跟 后 遍历
+2.第一个字母在前面跟后面找到的 两个字母 互相交换
+3. 接着找第二个元音字母，以此类推
+4.元音字母为 a e i o u （5个）
+
+Example 1:
+
+Input: "hello"
+Output: "holle"
+Example 2:
+
+Input: "leetcode"
+Output: "leotcede"
+Note:
+The vowels does not include the letter "y".
+
+答案：
+
+class Solution {
+    public String reverseVowels (String s) {
+        Set<Character> vowels = new HashSet<>();
+        vowels.add('a');vowels.add('A');
+        vowels.add('e');vowels.add('E');
+        vowels.add('i');vowels.add('I');
+        vowels.add('o');vowels.add('O');
+        vowels.add('u');vowels.add('U');
+        
+        int i = 0, j = s.length() -1;
+        char[] ss = s.toCharArray();
+        
+        while(i< j) {
+            if(!vowels.contains(ss[i])) i++;
+            else if(!vowels.contains(ss[j])) j--;
+            else{
+                char t = ss[i];
+                ss[i] = ss[j];
+                ss[j] = t;
+                
+                i++; j--;
+            }
+        }
+        return String.valueOf(ss);
+    }
+}
