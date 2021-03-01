@@ -1,10 +1,11 @@
 633. Sum of Square Numbers
 
 Given a non-negative integer c, decide whether there're two integers a and b such that a2 + b2 = c.
+
 题目分析： 
 1.给出 非负数 整数 c， 检查 c 是否等于 a 和 b 的平方和
 2. a 或者 b 其中一个可以为0
-
+3.它的约束条件为
 
 Example 1:
 
@@ -29,21 +30,27 @@ Input: c = 1
 Output: true
 
 
+Constraints:    （规定， 约束条件）
+
+0 <= c <= （2的 231次方 ） - 1
+
+
+
 答案：  （用Java 来解答）
 class Solution {
-    public boolean judgeSquareSum(int c) {
-        if (c < 0) return false;
-        int i = 0, j= (int) Math.sqrt(c);
-        while (i <= j) {
-            int powSum = i * i + j * j;
-            if (powSum == c ){
+    public boolean judgeSquareSum(int c) {               java 的固定输出：public + class 类 即boolean 布尔 判断真或假， int 整数
+        if (c < 0) return false;                     if（加条件）return 语句：   如果c 小于0， 则不存在，因为平方不可能是负数 ，则return false
+        int i = 0, j= (int) Math.sqrt(c);          从0 遍历，设置 i 等于0， j= (int) Math.sqrt(c) 代表j= 对c进行开方， j^2 = c，
+        while (i <= j) {                           使用while loop，while（加条件语句） int n =(int)Math.sqrt(i)的意思是对i进行开方运算，然后将结果转换为整型数bai据赋值给n。
+            int powSum = i * i + j * j;                把两者的平方相加
+            if (powSum == c ){                      if （+条件语句）return ，如果 两者的平方和 = c， return true；
                 return true;
-            } else if (powSum > c ) {
-                j--;
-            } else {
+            } else if (powSum > c ) {                else if （+条件语句）， 平方和 > c
+                j--;                                则，j 较大值 变小 减1 个数
+            } else {                               不然， 平方和 < c ， i （等于0）+ 1 ，变大
                 i++;
             }
         }
-        return false;
+        return false;                              不明白这里，是不是代表如果所有的都不成功，则输出false？
     }
 }
