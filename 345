@@ -20,29 +20,29 @@ The vowels does not include the letter "y".
 
 答案：
 
-class Solution {
-    public String reverseVowels (String s) {
-        Set<Character> vowels = new HashSet<>();
+class Solution {                                             class Solution ： 固定模式
+    public String reverseVowels (String s) {                public + class类，例如String， reverseVowels： 转换前后顺序
+        Set<Character> vowels = new HashSet<>();            new ： 新建一个array，   HashSet<>() : 静态初始化集合， 括号代表array
         vowels.add('a');vowels.add('A');
         vowels.add('e');vowels.add('E');
-        vowels.add('i');vowels.add('I');
+        vowels.add('i');vowels.add('I');                    加入 元音字母： a e i o u 和它们的大写
         vowels.add('o');vowels.add('O');
         vowels.add('u');vowels.add('U');
         
-        int i = 0, j = s.length() -1;
-        char[] ss = s.toCharArray();
+        int i = 0, j = s.length() -1;                      index 第一个字母为 0，最后一个字母的顺序为 长度-1， 因为它是从0 开始数起
+        char[] ss = s.toCharArray();                      ？？？？ 不懂这一行的意思， char array，查相关资料
         
-        while(i< j) {
-            if(!vowels.contains(ss[i])) i++;
-            else if(!vowels.contains(ss[j])) j--;
-            else{
-                char t = ss[i];
-                ss[i] = ss[j];
-                ss[j] = t;
+        while(i< j) {                                       while loop， 一个个遍历  while（+条件语句）{ 里面包含if - else if- else 语句} ，最后跳出loop 便return
+            if(!vowels.contains(ss[i])) i++;              if （+条件语句）i++；  感叹号！意思是不包含，不成立后面的语句
+            else if(!vowels.contains(ss[j])) j--;            else if（+条件语句）   ！ 是不包含，同上
+            else{                                         else 后面不加条件语句 之间大括号输出
+                char t = ss[i];                     设置char 数组等于ss【i】
+                ss[i] = ss[j];                  将i 替换 j
+                ss[j] = t;                       因为之前t= i， 所以把j替换t
                 
-                i++; j--;
+                i++; j--;                         一个个依次遍历跟替换
             }
         }
-        return String.valueOf(ss);
+        return String.valueOf(ss);                输出最后的string ss 的值， 这里的return是已经跳出loop 循环
     }
 }
