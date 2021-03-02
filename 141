@@ -38,5 +38,37 @@ The number of the nodes in the list is in the range [0, 104].
 pos is -1 or a valid index in the linked-list.
 
 
-答案：
+答案：（Javascript 的解法）
+let hasCycle = function(head) {                        hasCycle 不能去掉，？？一直不知道怎么给function起名字
+    let x = head;                                         让x 和 y 代表两个pointer指针在链表上走，x代表走得快，y代表走得慢
+    let y = head;                                          x 和 y 都代表一开始都在链表的头部
+    
+    while (x !== null && x.next !== null) {         设置while 循环，给出循环条件， x 在的位置不能是空格，x的下一步也不等于空格，这样循环才可以成立，无限循环，因为没有break，是圆圈环
+        x = x.next.next;                              x= x.走两步  （快的）
+        y = y.next;                                   y= y 走一步 （慢的）
+        
+        if (x == y){                                 如果 x== y， 意思是x 与 y相遇
+            return true;                                 则输出真
+        }
+    }
+    return false;                                      跳出while循环外，意思是不在while的条件范围内， 输出假
+    
+};
+
+另一种解法：（Java的写法）
+
+public boolean hasCycle(ListNode head) {
+    if (head == null) {
+        return false;
+    }
+    ListNode l1 = head, l2 = head.next;
+    while (l1 != null && l2 != null && l2.next != null) {
+        if (l1 == l2) {
+            return true;
+        }
+        l1 = l1.next;
+        l2 = l2.next.next;
+    }
+    return false;
+}
 
