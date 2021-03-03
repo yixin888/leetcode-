@@ -1,3 +1,9 @@
+Java 的命名规则：
+1.第一个字母小写，下一个和后面的单词的开头大写，不使用连接符号：addPerson
+2.下划线可能出现在 JUnit 测试方法名称中用以分隔名称的逻辑组件。一个典型的模式是：test<MethodUnderTest>_<state>，例如 testPop_emptyStack
+
+运算符号   [] 中括号用于数组
+
 1.int n =(int)Math.sqrt(i)的意思是对i进行开方运算，然后将结果转换为整型数bai据赋值给n。
 int 是基本类型，直接存数值 
 integer是对象，用一个引用指向这个对象(一个类)
