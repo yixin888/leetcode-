@@ -4,3 +4,16 @@ char array:
 https://www.edureka.co/blog/character-array-in-java/
 
 区别： （1）public：可以被所有其他类所访问。 （2）private：只能被自己访问和修改。 （3）protected：自身，子类及同一个包中类可以访问。
+
+
+for loop，for each loop，冒号意思是在d（下面代表是car）里面执行for loop
+
+    String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+    for (String i : cars) {
+      System.out.println(i);
+   打印出来就是：
+   Volvo
+   BMW
+   Ford
+   Mazda
+
