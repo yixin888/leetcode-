@@ -65,3 +65,6 @@ sorted(a,key=lambda x:x[0])
 按照第二个元素排序
 sorted(a,key=lambda x:x[1])
 [('c',1),('a',2),('b',3),('d',4)]
+
+在python里面
++= 代表adds a number to a variable, changing the variable itself in the process (whereas + would not). 
