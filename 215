@@ -1,0 +1,35 @@
+215. Kth Largest Element in an Array
+Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+题目分析：
+1.找出第K个最大值，在一个没有排序好的数组里面
+2.K 意思是第k个最大值，不是里面第k个数
+
+
+Example 1:
+
+Input: [3,2,1,5,6,4] and k = 2
+Output: 5
+Example 2:
+
+Input: [3,2,3,1,2,4,5,5,6] and k = 4
+Output: 4
+Note: 
+You may assume k is always valid, 1 ≤ k ≤ array's length.
+
+答案：（java 的写法）
+class Solution {                                           class Solution:标准写法
+    public int findKthLargest(int[] nums, int k) {       punlic + class(类，例如int，意思是赋予值， 【】中括号代表数组array)，这里名字findKthLargest，第一个单词字母小写，后面大写
+        Arrays.sort(nums);                                   先给数组排好序，用Arrays.sort();
+        return nums[nums.length-k];                           输出nums数组里面的倒数第K的最大值，用【】中括号
+    }
+}
+
+另一种java的写法，差不多
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        return nums[n-k];
+    }
+}
