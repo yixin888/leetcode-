@@ -1,12 +1,12 @@
-int n =(int)Math.sqrt(i)的意思是对i进行开方运算，然后将结果转换为整型数bai据赋值给n。
+1.int n =(int)Math.sqrt(i)的意思是对i进行开方运算，然后将结果转换为整型数bai据赋值给n。
 
-char array:
+2.char array:
 https://www.edureka.co/blog/character-array-in-java/
 
-区别： （1）public：可以被所有其他类所访问。 （2）private：只能被自己访问和修改。 （3）protected：自身，子类及同一个包中类可以访问。
+3.区别： （1）public：可以被所有其他类所访问。 （2）private：只能被自己访问和修改。 （3）protected：自身，子类及同一个包中类可以访问。
 
 
-for loop，for each loop，冒号意思是在d（下面代表是car）里面执行for loop
+4.for loop，for each loop，冒号意思是在d（下面代表是car）里面执行for loop
 
     String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
     for (String i : cars) {
@@ -17,3 +17,8 @@ for loop，for each loop，冒号意思是在d（下面代表是car）里面执�
    Ford
    Mazda
 
+5.charAt （）： 用于查找字母位置index ： 从0 到stringlength - 1 ，输出数字
+
+6. isSubString（）  ： 用于查找子串
+
+7.compareTo()  ： 用于对比两个字符串相差多少个字母  例如x 于y 字符串对比，XcompareTo(y)， 如果x长于y 两个字母，则输出2， 如果短于两个字母，输出 -2， 为负数
