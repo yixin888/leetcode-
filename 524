@@ -1,0 +1,59 @@
+524. Longest Word in Dictionary through Deleting
+
+Given a string s and a string array dictionary, 
+return the longest string in the dictionary that can be formed by deleting some of the given string characters. 
+If there is more than one possible result, return the longest word with the smallest lexicographical order. 
+If there is no possible result, return the empty string.
+
+题目分析：
+1.给出 一个字符串string 和一个 dictionary
+2.如果删除掉 字符串string 里面的任何字母 就可以得到 dictionary 里面相同的字符串，则输出字典里最长的那个字符串
+3.如果字典里有几个字符串都符号条件，则输出 最长的字母并且它还符合字典里最小的序号如aaaa 在字典里比bbbb排序小
+4.如果没有符合的条件，则输出空的字符串
+
+
+Example 1:
+
+Input: s = "abpcplea", dictionary = ["ale","apple","monkey","plea"]
+Output: "apple"
+Example 2:
+
+Input: s = "abpcplea", dictionary = ["a","b","c"]
+Output: "a"
+ 
+
+Constraints:
+
+1 <= s.length <= 1000
+1 <= dictionary.length <= 1000
+1 <= dictionary[i].length <= 1000
+s and dictionary[i] consist of lowercase English letters.
+
+答案：（Java 的写法）
+class Solution {
+    public String findLongestWord(String s, List<String> d) {                 public + class（例如String），设置（最长的string，在 dictionary d 的string list 里面找）
+        String longestWord = "";                                                  先设置为空的string，找到之后再加
+        for (String target : d){                                                    for loop，for each loop，冒号意思是在d里面执行for loop
+            int l1 = longestWord.length(), l2 = target.length();
+            if (l1 > l2 || l1 == l2 && longestWord.compareTo(target) < 0){
+                continue;
+            }
+            if (isSubstr(s, target)){
+                longestWord = target;
+            }
+        }
+        return longestWord;
+    }
+
+
+private boolean isSubstr(String s, String target) {
+    int i = 0, j= 0;
+    while (i < s.length() && j < target.length()){
+        if (s.charAt(i) == target.charAt(j)){
+            j++;
+        }
+        i++;
+    }
+    return j == target.length();
+}
+}
