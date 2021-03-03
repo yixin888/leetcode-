@@ -38,3 +38,30 @@ https://www.edureka.co/blog/character-array-in-java/
 6. isSubString（）  ： 用于查找子串
 
 7.compareTo()  ： 用于对比两个字符串相差多少个字母  例如x 于y 字符串对比，XcompareTo(y)， 如果x长于y 两个字母，则输出2， 如果短于两个字母，输出 -2， 为负数
+
+
+
+
+
+
+
+
+
+
+在Python中有两种函数，一种是def定义的函数，另一种是lambda函数，也就是大家常说的匿名函数
+
+eg.
+def f(x):   普通写法                                  lambda x: 3*x+1  缩写
+    return 3*x + 1
+
+与sorted函数结合使用，比如：创建由元组构成的列表：
+
+a=[('b',3),('a',2),('d',4),('c',1)]
+
+按照第一个元素排序
+sorted(a,key=lambda x:x[0])
+[('a',2),('b',3),('c',1),('d',4)]
+
+按照第二个元素排序
+sorted(a,key=lambda x:x[1])
+[('c',1),('a',2),('b',3),('d',4)]
