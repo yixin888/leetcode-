@@ -1,4 +1,14 @@
 1.int n =(int)Math.sqrt(i)的意思是对i进行开方运算，然后将结果转换为整型数bai据赋值给n。
+int 是基本类型，直接存数值 
+integer是对象，用一个引用指向这个对象(一个类)
+Java中int和Integer关系是比较微妙的。关系如下：
+
+a.int是基本的数据类型； 
+b.Integer是int的封装类； 
+c.int和Integer都可以表示某一个数值； 
+d.int和Integer不能够互用，因为他们两种不同的数据类型；
+
+
 
 2.char array:
 https://www.edureka.co/blog/character-array-in-java/
