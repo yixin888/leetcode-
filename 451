@@ -1,0 +1,50 @@
+451. Sort Characters By Frequency
+Given a string, sort it in decreasing order based on the frequency of characters.
+
+题目分析：
+给出一个字符串， 给它排序，根据字母出现的频率以高到低排序
+
+
+Example 1:
+
+Input:
+"tree"
+
+Output:
+"eert"
+
+Explanation:
+'e' appears twice while 'r' and 't' both appear once.
+So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
+Example 2:
+
+Input:
+"cccaaa"
+
+Output:
+"cccaaa"
+
+Explanation:
+Both 'c' and 'a' appear three times, so "aaaccc" is also a valid answer.
+Note that "cacaca" is incorrect, as the same characters must be together.
+Example 3:
+
+Input:
+"Aabb"
+
+Output:
+"bbAa"
+
+Explanation:
+"bbaA" is also a valid answer, but "Aabb" is incorrect.
+Note that 'A' and 'a' are treated as two different characters.
+
+
+答案：（用python的写法）
+class Solution:
+    def frequencySort(self, s: str) -> str:           名字，第一个单词小写，第2个单词的第一个字母大写            
+        string = ""                                            假设string 等于“”空的
+        for key, count in Counter(s).most_common():        for loop 循环，计算频率最多的那个单词
+            string += key*count                              string 空的 一个一个地加上count的最多的那个key到最少的那个
+            
+        return string                                      输出string
