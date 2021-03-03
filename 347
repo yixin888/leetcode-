@@ -1,0 +1,36 @@
+347. Top K Frequent Elements
+Given a non-empty array of integers, return the k most frequent elements.
+题目分析：
+给出一个非空的数组，数组里面有interger数字， 找出k个最大出现频率的元素
+
+Example 1:
+
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+Example 2:
+
+Input: nums = [1], k = 1
+Output: [1]
+Note:
+
+You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
+Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
+It's guaranteed that the answer is unique, in other words the set of the top k frequent elements is unique.
+You can return the answer in any order.
+
+答案：（python 的解法）
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:           起名字，第一个单词小写，后面的单词头一个字母大写（元素。 数组：，k： int是赋予值）
+        c = Counter(nums)                                            先count 数组num每个元素 有多少个
+        c = sorted(c, key=lambda x:c[x], reverse= True)                    然后排序（c， key= lambda，lambda代表匿名函数，后面接着它的表达式 x=c【x】，然后从最大到最小排序）
+        
+        return c[:k]                                                输出c 的key-value pairs ,从1 一直数到k个数
+        
+        
+ 另一种解法：也是python
+ from collections import Counter
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        nums_counter = Counter(nums)
+        sorted_by_frequency = sorted(nums_counter,key=nums_counter.get, reverse=True)
+        return sorted_by_frequency[:k]
