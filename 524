@@ -34,22 +34,22 @@ class Solution {
     public String findLongestWord(String s, List<String> d) {                 public + class（例如String），设置（最长的string，在 dictionary d 的string list 里面找）
         String longestWord = "";                                                  先设置为空的string，找到之后再加
         for (String target : d){                                                    for loop，for each loop，冒号意思是在d里面执行for loop
-            int l1 = longestWord.length(), l2 = target.length();
-            if (l1 > l2 || l1 == l2 && longestWord.compareTo(target) < 0){
-                continue;
-            }
-            if (isSubstr(s, target)){
-                longestWord = target;
+            int l1 = longestWord.length(), l2 = target.length();                 int 代表整数，  l1代表dictionary里面字符串最长的字符串的长度   l2代表目标（string）的长度
+            if (l1 > l2 || l1 == l2 && longestWord.compareTo(target) < 0){     如果 l1 大于 l2，或者最长的等于测试的目标字符串的长度，并且 长的-目标<0 ，目标应该比最长的要长才行，才能删减
+                continue;                                                              continue 是断开循环，不再循环，break是断开这次循环，接着循环下一个
+              }
+            if (isSubstr(s, target)){                   如果 s 是target的子串substring，
+                longestWord = target;                     target 是longestWord           
             }
         }
-        return longestWord;
+        return longestWord;                          输出longestWord
     }
 
 
-private boolean isSubstr(String s, String target) {
+private boolean isSubstr(String s, String target) {                     private ： 只在自己的类里执行   isSubstr ： 检查s 是否是target 的substring 子串
     int i = 0, j= 0;
-    while (i < s.length() && j < target.length()){
-        if (s.charAt(i) == target.charAt(j)){
+    while (i < s.length() && j < target.length()){                    while loop 循环
+        if (s.charAt(i) == target.charAt(j)){                     charAt （）： 用于查找字母位置index ： 从0 到stringlength - 1 ，输出数字
             j++;
         }
         i++;
