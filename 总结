@@ -51,7 +51,7 @@ https://www.edureka.co/blog/character-array-in-java/
 在Python中有两种函数，一种是def定义的函数，另一种是lambda函数，也就是大家常说的匿名函数
 
 eg.
-def f(x):   普通写法                                  lambda x: 3*x+1  缩写
+def f(x):   普通写法                                  lambda x: 3*x+1 （ 缩写 ）lambda x,意思是input x
     return 3*x + 1
 
 与sorted函数结合使用，比如：创建由元组构成的列表：
