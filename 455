@@ -5,6 +5,19 @@ Each child i has a greed factor g[i], which is the minimum size of a cookie that
 and each cookie j has a size s[j]. If s[j] >= g[i], we can assign the cookie j to the child i, and the child i will be content. 
 Your goal is to maximize the number of your content children and output the maximum number.
 
+题目分析：
+分配饼干
+1.给你的孩子一些饼干，但是每个孩子最多给一个饼干
+2.每个孩子（用i表示 ）都有自己不同程度的贪心或者满足感（用g来表示）
+3.用最小的和最少的饼干来满足孩子们
+4.每个饼干都有它自己的size尺寸 s 
+5
+
+
+
+
+
+
 Example 1:
 
 Input: g = [1,2,3], s = [1,1]
@@ -27,4 +40,27 @@ Constraints:
 0 <= s.length <= 3 * 104
 1 <= g[i], s[j] <= 231 - 1
 
-答案
+答案：   （java 的写法）
+class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        if (s.length == 0) return 0;
+        Arrays.sort(g);
+        Arrays.sort(s);
+        
+        int i = 0;
+        int j = 0;
+        int childrenContent = 0;
+        
+        while (i< g.length && j < s.length){
+            if (g[i] <= s[j]){
+                i++;
+                j++;
+                childrenContent++;
+            }
+        else{
+            j++;
+        }
+    }
+return childrenContent;
+    }
+}
