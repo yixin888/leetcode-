@@ -29,4 +29,7 @@ Example 4:
 Input: nums = [1]
 Output: [1]
 
-答案
+答案：
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:             题目给的格式： def定义，把颜色排序，int赋予值
+        nums.sort();                                            只是把数字排序起来
