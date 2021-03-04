@@ -68,3 +68,10 @@ sorted(a,key=lambda x:x[1])
 
 在python里面
 += 代表adds a number to a variable, changing the variable itself in the process (whereas + would not). 
+a+=b表示重新将a定义为=a+b,比如：
+>>> a = 1
+>>> b = 3
+>>> c = 2
+>>> a += c
+>>> print(a)
+3
