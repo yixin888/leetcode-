@@ -9,9 +9,10 @@ Your goal is to maximize the number of your content children and output the maxi
 分配饼干
 1.给你的孩子一些饼干，但是每个孩子最多给一个饼干
 2.每个孩子（用i表示 ）都有自己不同程度的贪心或者满足感（用g来表示）
-3.用最小的和最少的饼干来满足孩子们
+3.用最小的和最少的饼干来最大地满足孩子们
 4.每个饼干都有它自己的size尺寸 s 
-5
+5.j代表饼干的排号，s【j】意思是相对于不同排号的j都有它相对应的size大小
+6.用最小的和最少的饼干来最大地满足孩子们
 
 
 
@@ -40,27 +41,29 @@ Constraints:
 0 <= s.length <= 3 * 104
 1 <= g[i], s[j] <= 231 - 1
 
+
+
 答案：   （java 的写法）
 class Solution {
     public int findContentChildren(int[] g, int[] s) {
-        if (s.length == 0) return 0;
-        Arrays.sort(g);
-        Arrays.sort(s);
+        if (s.length == 0) return 0;     如果s，饼干的size=0，也就是没有饼干，则没有满足任何孩子，返回0
+        Arrays.sort(g);                 给每个孩子的贪心程度或者满足程度排序
+        Arrays.sort(s);                   给每个饼干的size 从小到大排序
         
-        int i = 0;
-        int j = 0;
-        int childrenContent = 0;
+        int i = 0;                       i代表不同孩子的序号，从0 开始
+        int j = 0;                        j代表不同饼干的序号，从0位置开始
+        int childrenContent = 0;              满足孩子的个数为0 开始
         
-        while (i< g.length && j < s.length){
-            if (g[i] <= s[j]){
-                i++;
-                j++;
-                childrenContent++;
+        while (i< g.length && j < s.length){          while loop循环， 当孩子小于g.length 多少个孩子，代表贪心的孩子个数，意思是i小于总的人数，
+            if (g[i] <= s[j]){                        饼干的序号 小于s.length （总共多少个饼干），当  贪心程度< 饼干大小 时
+                i++;                                    孩子一个个增加
+                j++;                                      饼干也一个个增加
+                childrenContent++;                       满足的人数也一个个增加
             }
-        else{
-            j++;
+        else{                  不然，贪心程度 > 饼干大小
+            j++;                孩子不变，因为从最小的排序，饼干则移到下一个大的饼干
         }
     }
-return childrenContent;
+return childrenContent;         输出孩子满足的个数
     }
 }
