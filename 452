@@ -1,0 +1,56 @@
+452. Minimum Number of Arrows to Burst Balloons
+
+There are some spherical balloons spread in two-dimensional space. For each balloon, provided input is the start and end coordinates of the horizontal diameter. Since it's horizontal, y-coordinates don't matter, and hence the x-coordinates of start and end of the diameter suffice. The start is always smaller than the end.
+
+An arrow can be shot up exactly vertically from different points along the x-axis. A balloon with xstart and xend bursts by an arrow shot at x if xstart ≤ x ≤ xend. There is no limit to the number of arrows that can be shot. An arrow once shot keeps traveling up infinitely.
+
+Given an array points where points[i] = [xstart, xend], return the minimum number of arrows that must be shot to burst all balloons.
+
+ 题目的意思是：
+1.以最少的箭射穿最多的气球
+2.一系列的全球在x 轴上排列，不需要管y轴，
+3.气球有大小，宽度等同于x的区间，有大有小
+
+Example 1:
+
+Input: points = [[10,16],[2,8],[1,6],[7,12]]
+Output: 2
+Explanation: One way is to shoot one arrow for example at x = 6 (bursting the balloons [2,8] and [1,6]) and another arrow at x = 11 (bursting the other two balloons).
+Example 2:
+
+Input: points = [[1,2],[3,4],[5,6],[7,8]]
+Output: 4
+Example 3:
+
+Input: points = [[1,2],[2,3],[3,4],[4,5]]
+Output: 2
+Example 4:
+
+Input: points = [[1,2]]
+Output: 1
+Example 5:
+
+Input: points = [[2,3],[2,3]]
+Output: 1
+ 
+
+Constraints:
+0 <= points.length <= 104
+points[i].length == 2
+-231 <= xstart < xend <= 231 - 1
+
+
+答案：（python 的写法）
+class Solution:
+    def findMinArrowShots(self, points: List[List[int]]) -> int:   名字，第一个字母小写，第二个单词字母大写
+        if not points : return 0           第一种情况：如果没有point，意思是没有气球，则返回0，不射出如何箭
+        points.sort(key= lambda x: x[1])      第二种情况，如果有气球，先排列好他们的顺序，以x区间的终点排列
+        end= points[0][1]      设置第一个终点为 排在第一个气球的x区间的终点， 【0】代表第一个数， 【1】代表终点
+        count = 1           射出了第一箭
+        for point in points:     遍历剩下的区间
+            if end < point[0]:   如果左边的区间终点小于右边区间的起始点
+                count += 1      则再射一箭
+                end = point[1]    终点为新的区间的终点
+        return count     跳出for循环 输出总共多少支箭
+
+
