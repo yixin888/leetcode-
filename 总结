@@ -75,3 +75,6 @@ a+=b表示重新将a定义为=a+b,比如：
 >>> a += c
 >>> print(a)
 3
+
+
+float('inf') is used for setting a variable with an infinitely large value.
