@@ -1,0 +1,37 @@
+392. Is Subsequence
+Given two strings s and t, check if s is a subsequence of t.
+
+A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters 
+without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+
+题目分析：
+1.给出两个字符串 s 和 t
+2.判断s 是不是t 的子串
+
+Example 1:
+
+Input: s = "abc", t = "ahbgdc"
+Output: true
+Example 2:
+
+Input: s = "axc", t = "ahbgdc"
+Output: false
+ 
+
+Constraints:
+
+0 <= s.length <= 100
+0 <= t.length <= 104
+s and t consist only of lowercase English letters.
+
+答案：
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:   布尔boolean：判断True / False
+        if len(s) > len(t) : return False   如果字符串s的长度 <  t的长度，False
+        i=j = 0      设置两个变量i 和 j 为0，分别在字符串s 和t 中从0 开始的位置遍历
+        while i < len(s) and j < len(t):   用while语句
+            if s[i] == t[j]:   如果 s的字母等于t
+                i += 1         跳到验证s字符串里面的下一个字母
+            j += 1            同步调到t 字符串，验证下一个字母
+        return i == len(s)      注意没有indent 缩进，不然输不出正确结果， i代表最终验证出多少个相同的字母，看看跟原来s的长度是不是相同
+
