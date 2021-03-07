@@ -1,0 +1,41 @@
+665. Non-decreasing Array
+Given an array nums with n integers, your task is to check if it could become non-decreasing by modifying at most one element.
+
+We define an array is non-decreasing if nums[i] <= nums[i + 1] holds for every i (0-based) such that (0 <= i <= n - 2).
+题目分析：
+1.检查数组里面的数字是不是从高到低排序
+2.如果是高到低排序，则改变至多一个元素，改变这种情况
+ 
+
+Example 1:
+
+Input: nums = [4,2,3]
+Output: true
+Explanation: You could modify the first 4 to 1 to get a non-decreasing array.
+Example 2:
+
+Input: nums = [4,2,1]
+Output: false
+Explanation: You can't get a non-decreasing array by modify at most one element.
+ 
+
+Constraints:
+
+n == nums.length
+1 <= n <= 104
+-105 <= nums[i] <= 105
+
+
+答案：
+class Solution:
+    def checkPossibility(self, nums: List[int]) -> bool:   布尔：判断True 或者 False
+        count = 0   计算多少个前面大于后面的数
+        for i in range(len(nums)-1):   循环遍历for loop，在个数的总数-1 的情况下遍历，因为它有 i+ 1 代表最后那个数
+            if nums[i] > nums[i+1]:    如果前面大于后面的数，从高到低
+                count += 1     记上多少个从高到低
+                if count > 1:     如果从高到低大于1 的话
+                    return False   输出False，意思是数组里面的数全部是从高到低
+                if i > 0 and nums[i+1] < nums [i-1]:  如果只是个别的从高到低，还有些打乱顺序， count<= 1时
+                    nums[i+1]= nums[i]     则可以把里面的数字更换掉
+                    
+        return True
