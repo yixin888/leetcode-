@@ -43,6 +43,6 @@ class Solution:
             if curSum < 0:       排除法，可以省运行时间，如果目前的和小于0 
                 curSum = 0     则 重新把它设置为0
             curSum += n       任何加上下一个数字
-            maxSub = max(maxSub, curSum) 
-        return maxSub
+            maxSub = max(maxSub, curSum)   最大的数组是在： 和为最大值的curSum 里面
+        return maxSub  输出最大的数组
             
