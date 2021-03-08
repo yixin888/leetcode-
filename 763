@@ -2,7 +2,10 @@
 A string S of lowercase English letters is given. 
 We want to partition this string into as many parts as possible so that each letter appears 
 in at most one part, and return a list of integers representing the size of these parts.
-
+题目分析：
+1.把字符串尽可能地划分更多的片段
+2.同一个字母只能出现在一个片段当中
+3.返回只有一个列表，包含每个片段的长度
  
 
 Example 1:
@@ -24,15 +27,16 @@ S will consist of lowercase English letters ('a' to 'z') only.
 
 class Solution:
     def partitionLabels(self, S: str) -> List[int]:
-        start = 0
-        end = 0
-        ans = []
-        max_index= {item: index for index, item in enumerate(S)}
+        start = 0      每个字母标注起始位置=0
+        end = 0         最后找到同一个字母的位置=0
+        ans = []         答案为空集
+        max_index= {item: index for index, item in enumerate(S)}    一个键 对应 一个值，找出最大的键值
         
-        for index, i in enumerate(S) :
-            end = max(end, max_index[i])
-            if index == end:
-                ans.append(end - start + 1)
-                start = index + 1
+        for index, i in enumerate(S) :       遍历循环for loop， 遍历index (排序）和i（字母） 在 s里面每个字母的键值
+            end = max(end, max_index[i])      字母最后出现的位置
+            if index == end:                  如果排序== 最后位置，遍历的位置和边界重合了，那就ok了
+                ans.append(end - start + 1)    从这里截断并记录长度
+                start = index + 1     起始位置= 序号（从0开始）+ 1
                 
-        return ans
+        return ans    输出答案
+        
