@@ -1,0 +1,44 @@
+69. Sqrt(x)
+Given a non-negative integer x, compute and return the square root of x.
+
+Since the return type is an integer, the decimal digits are truncated, and only the integer part of the result is returned.
+题目分析：
+1.给出非负整数的想，找出x的平方根
+2.一般第一反应是用自带的平方根算法，再用int（）
+3.但是面试官不允许用这个，得另外的解法，例如二分法
+
+
+解题思路：
+1.如果 x < 2, 也就是 1或者0， 则等于它本身，return x
+2.定义左边为1，因为从1 开始，右边为x除以2 的整数，
+     因为一半的平方等于或者大于本身
+3.左右同时向中间寻找，用while循环
+4.最后跳出while，输出值-1，因为
+ 
+
+Example 1:
+
+Input: x = 4
+Output: 2
+Example 2:
+
+Input: x = 8
+Output: 2
+Explanation: The square root of 8 is 2.82842..., and since the decimal part is truncated, 2 is returned.
+
+
+答案：(python写法)
+class solution :
+def mySqrt(self, x: int) -> int:
+        if x < 2:    如果 x < 2, 也就是 1或者0， 则等于它本身
+            return x    输出本身x
+        
+        left, right = 1, x // 2     左边定义为1， 右边为x除以2 的整数
+        while left <= right:     当左边小于右边，用while循环
+            mid = left + (right - left) // 2   如果右边还是比左边大，再找出这两个的中间值  
+            if mid > x/mid:  新的中间值跟x的中间值做对比，因为mid*mid =x
+                right = mid - 1   右边再向前移动1
+            else:      考虑left部分
+                left = mid + 1  往右边进一位
+        return left - 1   跳出while循环，当左边大于右边，也就是overlap，
+				                           输出值要-1，往回找
