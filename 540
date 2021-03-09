@@ -1,0 +1,70 @@
+540. Single Element in a Sorted Array
+You are given a sorted array consisting of only integers where every element appears exactly twice, except for one element which appears exactly once. Find this single element that appears only once.
+
+Follow up: Your solution should run in O(log n) time and O(1) space.
+题目分析
+1. 给出已经排好序的一系列整数
+2. 这个系列的整数全部出现两次
+3. 找出一个例外的数字，因为它值出现一次
+
+解题思路
+用dictionary 或者二分法
+ 
+
+Example 1:
+
+Input: nums = [1,1,2,3,3,4,4,8,8]
+Output: 2
+Example 2:
+
+Input: nums = [3,3,7,7,10,11,11]
+Output: 10
+ 
+
+Constraints:
+
+1 <= nums.length <= 10^5
+0 <= nums[i] <= 10^5
+
+解题思路
+用dictionary 或者二分法
+
+class Solution:
+    def singleNonDuplicate(self, nums: List[int]) -> int:
+        d = {}     设置一个空的dictionary
+        for n in nums:    循环遍历，for
+            if n not in d:    如果n 不在新建的字典中
+                d[n] = 1     设置为1
+            else:   不然，已经出现过了
+                d[n] +=1     设置+1
+        for k, v in d.items():    键 key，v  值 value，必须成对出现在dictionary中
+            if d[k] == 1:    如果key 键 的值== 1
+                return k      输出其key
+                
+另外一种解法：（二分法）
+class Solution 
+{
+public:
+    int singleNonDuplicate(vector<int>& nums) 
+    {
+        int l = 0;
+        int h = nums.size() - 1;
+        //二分查找
+        while(l < h)
+        {
+            int mid = l + (h - l)/2;
+            if(mid % 2 == 1)               //防止mid是奇数，是的话则左移一位
+                mid--;
+            if(nums[mid] == nums[mid+1])   //说明目标数在[mid+2,h]
+                l = mid + 2;
+            else                           //否则目标数在[l,mid]
+                h = mid;
+        } 
+        return nums[l];   
+    }
+};
+
+作者：lu-guo-de-feng-2
+链接：https://leetcode-cn.com/problems/single-element-in-a-sorted-array/solution/jian-ji-de-er-fen-cha-zhao-fa-by-lu-guo-de-feng-2/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
