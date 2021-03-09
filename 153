@@ -1,0 +1,59 @@
+Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, the array nums = [0,1,2,4,5,6,7] might become:
+
+[4,5,6,7,0,1,2] if it was rotated 4 times.
+[0,1,2,4,5,6,7] if it was rotated 7 times.
+Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
+
+Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+题目分析：
+1.找出旋转组中最小的元素
+2.它已经排好序了
+3.如果要旋转，找一个点，前半部分到中间跟后半部分排序是不变的
+
+
+ Example 1:
+
+Input: nums = [3,4,5,1,2]
+Output: 1
+Explanation: The original array was [1,2,3,4,5] rotated 3 times.
+Example 2:
+
+Input: nums = [4,5,6,7,0,1,2]
+Output: 0
+Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.
+Example 3:
+
+Input: nums = [11,13,15,17]
+Output: 11
+Explanation: The original array was [11,13,15,17] and it was rotated 4 times. 
+
+
+整体思路
+排序（从小到大排），然后找出最小值
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        nums.sort()    排序，从小到大排
+        return nums[0]      输出排在0的位置的元素，也就是最小值
+				
+另一种思路
+用二分法找，左右开工
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        if nums ==[]:     假设没有元素，空集
+            return       返回，没有意义
+        
+        left = 0         从左边第一个位置开始
+        right = len(nums)-1     从右边最后一个位置开始
+        result = nums[0]   设置找到的结果最小值为集合里的第一个数
+        
+        while left <= right:    当左边小于右边
+            mid = (left + right ) // 2      中间值的数
+            if nums[mid]>= nums[left]:    如果中间数大于左边的那个数，说明前面这一段都                                                                                 是升序，因为他们是按顺序
+                result = min(result, nums[left])    所以最小的值在左半部分是最左边的
+                left  = mid + 1                  开始看右半部分，从中间向右开始到最后
+            else:     另一种情况，还是看左半部分
+                result = min(result, nums[mid])   对比结果，找出最小的值
+                right = mid - 1      左半部分的右边向前移动一个
+        return result
