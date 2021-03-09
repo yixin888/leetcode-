@@ -1,0 +1,73 @@
+744. Find Smallest Letter Greater Than Target
+Given a list of sorted characters letters containing only lowercase letters, and given a target letter target, find the smallest element in the list that is larger than the given target.
+
+Letters also wrap around. For example, if the target is target = 'z' and letters = ['a', 'b'], the answer is 'a'.
+题 目分析
+1.给出已经排好顺序的一系列小写字母
+2.给出目标字母，找出比它大的最小的那个字母
+
+
+
+
+
+Examples:
+
+Input:
+letters = ["c", "f", "j"]
+target = "a"
+Output: "c"
+
+Input:
+letters = ["c", "f", "j"]
+target = "c"
+Output: "f"
+
+Input:
+letters = ["c", "f", "j"]
+target = "d"
+Output: "f"
+
+Input:
+letters = ["c", "f", "j"]
+target = "g"
+Output: "j"
+
+Input:
+letters = ["c", "f", "j"]
+target = "j"
+Output: "c"
+
+Input:
+letters = ["c", "f", "j"]
+target = "k"
+Output: "c"
+Note:
+
+letters has a length in range [2, 10000].
+letters consists of lowercase letters, and contains at least 2 unique letters.
+target is a lowercase letter.
+
+
+答案： 
+整体思路
+二分法，左右找
+
+class Solution:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        length = len(letters)     定义给出序列字母的长度
+        if letters[length -1] <= target:    如果最后一个字母比目标字母小
+            return letters[0]        这属于特殊情况， 输出第一个字母，因为全部都小于
+        left = 0           定义左边从位置0开始找
+        right = length - 1        右边从最后一个字母找
+        while left < right:                 当左边小于右边时，用while循环遍历
+            mid = (left + right) //2      定义左右的中间值，除以2的整数值
+            letter = letters[mid]      定义中间值对应的字母
+            if letter ==target:        如果中间值对应的字母 = 目标字母
+                left = mid +1         则+1，因为要找比它大的字母
+            elif letter < target:       如果中间值对应的字母比目标字母小
+                left = mid + 1    往右+ 1 ，一个个地找
+            else:                    剩下的情况，到右边的点
+                right = mid            右边就是中间值
+        return letters[left]      跳出while循环，当他不满足while循环条件左边<右边
+				                                     也就是，左边 > 右边， overlap, 输出左边值
+        
