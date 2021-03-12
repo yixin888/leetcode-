@@ -139,4 +139,10 @@ print (a[:-1])
 >>> a[::-1]
 [66, 2, 11, 9, 5, 1]
 
-
+python之collection-deque
+deque的英文意思是Double-Ended Queue，从字面的意思来看，他就是一个双向队列。
+我们使用list存储数据的时候，按索引访问元素很快，因为list是线性存储，数据量很大的时候在列表头插入和删除元素的效率就会很慢。
+为什么list效率低呢?
+deque是为了在两端高效实现插入和删除操作的双向列表，
+适合用于队列和栈：deque除了实现list的append()和pop()外，还支持appendleft()和popleft()，
+这样就可以非常高效地往头部或者尾部添加或删除元素。
