@@ -1,0 +1,51 @@
+7. Reverse Integer
+Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+
+Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+题目：
+1.将一个数字reverse
+2.边界不能超过[-231, 231 - 1]，超过则输出0
+
+
+ 
+
+Example 1:
+
+Input: x = 123
+Output: 321
+Example 2:
+
+Input: x = -123
+Output: -321
+Example 3:
+
+Input: x = 120
+Output: 21
+Example 4:
+
+Input: x = 0
+Output: 0
+
+整体思路
+1.分为正跟负数
+2.因为负数reverse的负号在后面
+3.先去绝对值，再加负号
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        num = 0          先定义输出值为0
+        a = abs(x)         取绝对值，到时候要是负数再加上“-”
+        
+        while(a != 0):     当a的值不等于0 时，用while循环
+            temp = a % 10       每次取出个位数
+            num = num*10 + temp     一开始输出值为0，
+						                                             每次往左移一位，再加上之前个位数，形成新的num
+            a = int(a/10)      每次都把个位数移走，所以除以10，
+						                            例如，321 变成32，而不是  320，把1 移走
+            
+        if x> 0 and num < 2147483647:      当x是正数
+            return num 正常输出
+        elif x< 0 and num <= 2147483647:   当x是负数
+            return -num    在前面加个符号
+        else:
+            return 0    跨出边界，输出0
