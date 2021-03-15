@@ -1,0 +1,43 @@
+1. Two Sum
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+ 题目：
+1.找出两个数加起来的和= target
+2.不能用同一个元素两次
+3.输出这两个元素的indices（index）
+
+
+ 
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Output: Because nums[0] + nums[1] == 9, we return [0, 1].
+Example 2:
+
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+Example 3:
+
+Input: nums = [3,3], target = 6
+Output: [0,1]
+
+解题思路：
+1.用暴力解法浪费时间，同一个元素重复测试
+2.查找表法（hash map），遍历的同事，记录信息
+3.省去一层循环，记录已经遍历的数值和它对应的下标index
+
+答案
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        n = len(nums)
+        res= {}          设一个空集
+        for i in range(n):     循环for，遍历i元素，i的取值在n以内
+            x = target - nums[i]   目标-nums【i 】 = x
+            if x in res:    如果x在已经标记好的集合中
+                return [res[x], i]   输出标号index
+            res[nums[i]]= i   集合的index 和以来的index一样
