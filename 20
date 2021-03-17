@@ -1,0 +1,52 @@
+20. Valid Parentheses
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+题目：
+1.给出一系列的string字符串
+2.里面只有括号等符合
+3.检查括号是否对称
+
+ 
+
+Example 1:
+
+Input: s = "()"
+Output: true
+Example 2:
+
+Input: s = "()[]{}"
+Output: true
+Example 3:
+
+Input: s = "(]"
+Output: false
+Example 4:
+
+Input: s = "([)]"
+Output: false
+Example 5:
+
+Input: s = "{[]}"
+Output: true
+整体思路
+1.用dictionary
+2.再用空集
+3.一个个遍历的时候加入空集
+4.pop() 函式用於移除列表中的一個元素（預設最後一個元素），並且返回該元素的值。
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        x= []   建一个空集，每遍历一个就加进去
+        d = {"(":")", "{":"}", "[":"]"}  建一个dictionary，成对出现，每个键都有相对应的值
+        
+        for p in s:     循环遍历
+            if p in d:  如果p在dictionary中
+                x.append(p)    加入空集
+            elif len(x) == 0 or d[x.pop()] != p:  如果没有括号等符号 或者 上一个括号于下一                                                                          个不对称
+                return False
+            
+        return len(x) == 0  这里不能直接return True，因为会出错，漏掉一种情况是只有一个左边，所以 要是他的len不等于0，则false
