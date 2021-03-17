@@ -1,0 +1,59 @@
+26. Remove Duplicates from Sorted Array
+Given a sorted array nums, remove the duplicates in-place such that each element appears only once and returns the new length.
+
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+题目
+1.给出一系列数组，里面已经从小到大排好序
+2.删除多余的数字，并且输出长度len
+3.不能从小建一个空集，只能在原来的集里面运作
+
+
+Clarification:
+
+Confused why the returned value is an integer but your answer is an array?
+
+Note that the input array is passed in by reference, which means a modification to the input array will be known to the caller as well.
+
+Internally you can think of this:
+
+// nums is passed in by reference. (i.e., without making a copy)
+int len = removeDuplicates(nums);
+
+// any modification to nums in your function would be known by the caller.
+// using the length returned by your function, it prints the first len elements.
+for (int i = 0; i < len; i++) {
+    print(nums[i]);
+}
+ 
+
+Example 1:
+
+Input: nums = [1,1,2]
+Output: 2, nums = [1,2]
+Explanation: Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.
+It doesn't matter what you leave beyond the returned length.
+Example 2:
+
+Input: nums = [0,0,1,1,1,2,2,3,3,4]
+Output: 5, nums = [0,1,2,3,4]
+Explanation: Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively. 
+It doesn't matter what values are set beyond the returned length.
+
+思路
+1.假设里面没有数字，输出0
+2.有数字，for loop遍历，if 条件语句
+3.count 计数，有多少个不同数
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if not nums:  如果没有数字
+            return 0    返回0
+        
+        count = 0   计数为0，不能从1开始，因为index=0 开始，尽管已经有一个数
+        for i in range(len(nums)):   遍历i，在nums长度的limit下
+            if nums[count] != nums[i]:   如果两者不相同
+                count += 1   计数加上一个
+                nums[count] = nums[i]    然后替换
+        return count +1  因为从第一个数开始，它设计的count= 0，所以这里要+1，补回来
+
