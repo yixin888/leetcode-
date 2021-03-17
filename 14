@@ -1,0 +1,41 @@
+14. Longest Common Prefix
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+题目
+找出最长的相同的前缀
+
+
+ 
+
+Example 1:
+
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+Example 2:
+
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+ 
+
+Constraints:
+
+0 <= strs.length <= 200
+0 <= strs[i].length <= 200
+strs[i] consists of only lower-case English letters.
+解题思路
+1.以第一个单词为参照物
+2.两个for loop，第一个for以第一个单词为参照物
+3.第二个for 从第二个单词依次检查
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if not strs:  如果不是字符串
+            return ""  输出空集
+        
+        for i in range(len(strs[0])):   第一个for循环以第一个单词为参照物
+            for string in strs[1:]:     第二个for从第二个单词以后检查
+                if i>= len(string) or string[i] != strs[0][i]:   如果其中一个单词长度查完，或者后                                                                                     面字母和第一个单词字母不相同
+                    return strs[0][:i]   输出序号为0的第一个单词，从第一个字母到i的字母
+        return strs[0]  输出第一个单词
