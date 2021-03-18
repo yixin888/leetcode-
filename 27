@@ -1,0 +1,62 @@
+27. Remove Element
+Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+
+题目：
+1.给出一系列数字
+2.找出目标数字val
+3.删除并且输出最后数组的长度
+4.只能在原来的数组上运作，不能重新开一个数组
+Clarification:
+
+Confused why the returned value is an integer but your answer is an array?
+
+Note that the input array is passed in by reference, which means a modification to the input array will be known to the caller as well.
+
+Internally you can think of this:
+
+// nums is passed in by reference. (i.e., without making a copy)
+int len = removeElement(nums, val);
+
+// any modification to nums in your function would be known by the caller.
+// using the length returned by your function, it prints the first len elements.
+for (int i = 0; i < len; i++) {
+    print(nums[i]);
+}
+ 
+
+Example 1:
+
+Input: nums = [3,2,2,3], val = 3
+Output: 2, nums = [2,2]
+Explanation: Your function should return length = 2, with the first two elements of nums being 2.
+It doesn't matter what you leave beyond the returned length. For example if you return 2 with nums = [2,2,3,3] or nums = [2,2,0,0],
+your answer will be accepted.
+Example 2:
+
+Input: nums = [0,1,2,2,3,0,4,2], val = 2
+Output: 5, nums = [0,1,4,0,3]
+Explanation: Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4. 
+Note that the order of those five elements can be arbitrary. It doesn't matter what values are set beyond the returned length.
+
+整体思路
+1.two pointer
+2.从第一个和最后一个
+3.找到目标，前后交换
+4.输出最后一个指针的位置+1，也就是等于数组的长度，因为排序从0 开始
+
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        i, last = 0, len(nums)-1 两个指针，前后开始
+        
+        while i <= last : 当第一个指针小于第二个指针的位置时
+            if nums[i] == val: 如果第一个指针等于目标
+                nums[i], nums[last] = nums[last], nums[i] 前后指针交换
+                last -= 1 然后最后的指针向前移动
+            else:  如果第一个指针不等于目标
+                i += 1  第一个指针向后移动一位
+        return last + 1  输出最后指针的序号+1，等于位置len，最后指针也就是第一个目标位置
