@@ -1,0 +1,29 @@
+58. Length of Last Word
+Given a string s consists of some words separated by spaces, return the length of the last word in the string. If the last word does not exist, return 0.
+
+A word is a maximal substring consisting of non-space characters only.
+
+题目:
+1.给出一系列字符串
+2.里面包含一些字母
+3.被空号分开
+
+
+Example 1:
+
+Input: s = "Hello World"
+Output: 5
+Example 2:
+
+Input: s = " "
+Output: 0
+思路
+把单词一个个分开
+再输出最后单词的长度
+
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        s = s.split()   把单词一个个分开
+        if not s:  如果没有单词
+            return 0  输出0
+        return len(s[-1])  输出最后单词的长度
