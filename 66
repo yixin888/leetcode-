@@ -1,0 +1,62 @@
+66. Plus One
+Given a non-empty array of decimal digits representing a non-negative integer, increment one to the integer.
+
+The digits are stored such that the most significant digit is at the head of the list, and each element in the array contains a single digit.
+
+You may assume the integer does not contain any leading zero, except the number 0 itself.
+
+ 
+
+Example 1:
+
+Input: digits = [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+Example 2:
+
+Input: digits = [4,3,2,1]
+Output: [4,3,2,2]
+Explanation: The array represents the integer 4321.
+Example 3:
+
+Input: digits = [0]
+Output: [1]
+
+
+
+
+
+题目:
+1.给出一个非空的数组
+2.把里面的所有数字变成一个数字
+3.+1 得到新的数字
+4.再拆成一个个数字
+
+思路：
+1.主要看最后的数字是否= 9
+2.如果=9，变成0，前面+1
+3.如果不等于9，则+1
+4.特殊情况 999 = 1000 
+
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        for i in reversed(range(len(digits))): 从后面读，不需要从前面读，只要看最后一个                                                                         数是否= 9
+            if digits[i] == 9:    如果等于9
+                digits[i] = 0  将他变为0  例如 9 变成 0
+            else:
+                digits[i] += 1  这里是重点，只是对当前的位数+1，而不是return 让所有的数+1
+                return digits  输出+ 1 后的结果
+        digits[0] = 1   当 999 的特殊时候，第一位变为1
+        digits.append(0)  加上第一位，例如 1 + 000 = 1000
+        return digits  输出结果
+			
+			另外一种解法：
+				class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        if digits == []:       空集
+            return [1]        输出 【1】
+        elif digits[-1] == 9:         最后一个数 == 9
+            return self.plusOne(digits[:-1]) + [0]   最后一个数的前面全部数组 + 【0】， 这里注意字符串相加用‘’+“ 号
+        else:
+            return digits[:-1] + [digits[-1]+1]  在不等于9 的情况下，最后一个数的前面全部数组 + （后面的数+1）， 这里注意字符串相加用‘’+“ 号， 后面的数字+ 1
