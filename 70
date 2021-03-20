@@ -1,0 +1,41 @@
+70. Climbing Stairs
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+ 
+
+Example 1:
+
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+Example 2:
+
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+
+
+
+
+
+题目:
+求出有多少种爬楼梯的方法
+
+思路：
+1.这里有两种方法： 递归DP 和 数列（两数之和等于后面）
+2.先列出1，2，3，4，5 级台阶
+3.发现结果是前面两数相加等于后面
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        pre, current = 0, 1  之前的数（有多少种解决方法）， 当前值（至少一个台阶）
+        for i in range(n):
+            pre, current = current, pre + current  不断的后面=前面两数相加
+        return current   输出当前值，current这里代表后面
