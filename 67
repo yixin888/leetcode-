@@ -1,0 +1,35 @@
+67. Add Binary
+Given two binary strings a and b, return their sum as a binary string.
+
+ 
+
+Example 1:
+
+Input: a = "11", b = "1"
+Output: "100"
+Example 2:
+
+Input: a = "1010", b = "1011"
+Output: "10101"
+题目:
+将二进制相加
+
+思路：
+把数从后面读，从后到前
+% 是取余数
+//   是取整数
+
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        result, carry, val = "", 0, 0   定义 输出结果， 进位，两数之和
+        for i in range(max(len(a), len(b))):  遍历，两个数取长度最长的
+            val = carry   两数之和+ 后面的进位
+            if i < len(a):   遍历，当a 长度比i长时
+                val += int(a[-(i+1)])  两数之和 + 进位 （负号- 代表从后面读到前面）
+            if i < len(b):    遍历， 当b长度比i长时
+                val += int(b[-(i+ 1)])   两数之和 + 进位
+            carry, val = val // 2, val %2  进位= 整数， 当前的val= 余数
+            result += str(val)  输出结果 = 一个个加上 val 的两数之和
+        if carry:   如果最后一个数还有进位
+            result += str(1)    输出结果+ 进位
+        return result[::-1]  因为之前是从后面相加得到的result，所以要将它反过来
