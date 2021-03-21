@@ -1,0 +1,36 @@
+101. Symmetric Tree
+Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+
+ 
+
+Example 1:
+
+
+Input: root = [1,2,2,3,4,4,3]
+Output: true
+Example 2:
+
+
+Input: root = [1,2,2,null,3,null,3]
+Output: false
+
+题目:
+检查节点是否对称（中间对称）
+
+思路：
+1.递归
+2.排除法
+
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if self is None:  是空的
+            return True   也是对称
+        return self.isSymmetricRec(root.left, root.right) 看看root是不是对称，
+    
+    def isSymmetricRec(self,left, right):  重新定义一个方程，检查root以下的节点
+        if left is None and right is None:  如果节点左右都是空的
+            return True     输出对称
+        if left is None or right is None or left.val != right.val: 
+				                                                           如果其中一个是空的或者值不相等
+            return False     输出不对称
+        return self.isSymmetricRec(left.left, right.right) and self.isSymmetricRec(left.right, right.left)    输出对称的条件是，root 的左边子节点的左边 = 右边子节点的右边，中间的等于中间的（左节点的右边 = 右节点的左边）
