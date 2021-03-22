@@ -1,0 +1,47 @@
+108. Convert Sorted Array to Binary Search Tree
+Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced binary search tree.
+
+A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.
+
+ 
+
+Example 1:
+
+
+Input: nums = [-10,-3,0,5,9]
+Output: [0,-3,9,-10,null,5]
+Explanation: [0,-10,5,null,-3,null,9] is also accepted:
+
+Example 2:
+
+
+Input: nums = [1,3]
+Output: [3,1]
+Explanation: [1,3] and [3,1] are both a height-balanced BSTs.
+
+题目:
+1.给出已经排好序的数（从小到大）
+2.将它分配均匀，变成tree
+3.左右边的node不能相差多于1层
+
+思路：
+1.把一系列的数从中间切割
+2.前面部分是左边的  子node
+3.后面部分是右边的  子node
+4.中间那个是  父node
+
+
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        def to_bst(nums, start, end):  再重新定义一个函数，因为之前的函数没用
+            if start > end:   极端的例子，不成立
+                return None   输出空
+            mid= (start + end) // 2     找出中间值，除法取整
+            node = TreeNode(nums[mid])    中间的数是父node 
+            node.left = to_bst(nums, start, mid-1)     左边的子node，
+						                                                                   用新定义的函数取起始点和终点
+            node.right = to_bst(nums, mid+1, end)    右边的子node，
+						                                                                   用新定义的函数取起始点和终点
+            return node    返回父node，从父node开始一个个输出子node
+        
+        return to_bst(nums, 0, len(nums)-1)  上面是定义函数怎么运作，这里是运行函数
