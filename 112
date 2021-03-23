@@ -1,0 +1,43 @@
+112. Path Sum
+Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.
+
+A leaf is a node with no children.
+
+ 
+
+Example 1:
+
+
+Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+Output: true
+Example 2:
+
+
+Input: root = [1,2,3], targetSum = 5
+Output: false
+Example 3:
+
+Input: root = [1,2], targetSum = 0
+Output: false
+
+题目:
+给出tree，找出每一层相加是否= 目标target  sum
+
+思路：
+分3种情况：
+1.root 是空的，返回False
+2.非空的情况下，有两种情况
+    没有子node，只有root，并且root的值= target sum
+		有子node，然后sum一层一层减去上面
+		
+class Solution:
+    def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:
+        if root is None:   空的root
+            return False     返回假
+        
+        if root.left is None and root.right is None and root.val == targetSum:
+            return True    
+						 没有子node，只有root，并且root的值= target sum
+        else:
+            return self.hasPathSum(root.left, targetSum - root.val) or self.hasPathSum(root.right, targetSum - root.val) 
+						输出满足True的条件是，有子node，分左右两边，任意一边成立就行，sum一层一层减去上面，求下面是否   =    sum-root
