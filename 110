@@ -1,0 +1,53 @@
+110. Balanced Binary Tree
+Given a binary tree, determine if it is height-balanced.
+
+For this problem, a height-balanced binary tree is defined as:
+
+a binary tree in which the left and right subtrees of every node differ in height by no more than 1.
+
+ 
+
+Example 1:
+
+
+Input: root = [3,9,20,null,null,15,7]
+Output: true
+Example 2:
+
+
+Input: root = [1,2,2,3,3,null,null,4,4]
+Output: false
+Example 3:
+
+Input: root = []
+Output: true
+
+题目：
+1.找出tree 是否是height 平衡
+2.平衡是两边平衡，相差不超过1
+3.输出true ，false
+
+思路：
+1.重新定义一个函数，找出子node
+2.子node的左右node是否相差大于1层
+3.大于一层，不平衡
+
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool: 布尔
+        def get_height(root):  重新定义一个函数，判断子node（的左右两边是否平衡）
+            if root is None:        如果子node是0
+                return 0        输出0 的height 深度
+            left_height, right_height = get_height(root.left), get_height(root.right)
+              左边深度  定义为  函数子node的左边  ，右边深度   定义为函数子node的右边
+						
+						if left_height < 0 or right_height < 0 or abs(left_height - right_height) > 1:
+                return -1   
+								这里的小于0，一开始是代表是不是 ！=  平衡的tree，例如只有左边没有右边
+								如果不是平衡tree ，它之后是返回 -1，依次循环
+								 所以，用0 来代替 是否是平衡树，满足这个条件
+								 即，左边不平衡，或者右边不平衡，又或者左边和右边相差多余一层
+								
+            return max(left_height, right_height) + 1  输出较大值的深度height，
+						                                                                  并且+1代表加上父node那一层
+        
+        return (get_height(root) >= 0)  运行新定义的方程，如果height满足大于0， 则是真
