@@ -1,0 +1,35 @@
+136. Single Number
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+Follow up: Could you implement a solution with a linear runtime complexity and without using extra memory?
+
+ 
+
+Example 1:
+
+Input: nums = [2,2,1]
+Output: 1
+Example 2:
+
+Input: nums = [4,1,2,1,2]
+Output: 4
+Example 3:
+
+Input: nums = [1]
+Output: 1
+
+
+题目:
+取出只有重复一次的数字
+不用多次遍历
+
+思路：
+用抑或思路，两两消除，只剩一个数
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        ans = 0        设置输出的答案=0
+        
+        for num in nums:    遍历数字
+            ans ^= num      两两消除
+        return ans      输出答案
