@@ -1,0 +1,37 @@
+169. Majority Element
+Given an array nums of size n, return the majority element.
+
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+ 
+
+Example 1:
+
+Input: nums = [3,2,3]
+Output: 3
+Example 2:
+
+Input: nums = [2,2,1,1,1,2,2]
+Output: 2
+
+题目:
+找出主要的元素
+它的出现频率 > n/2 ,即过半
+
+思路：
+1.先定下第一个元素（0）
+2.然后从第二个元素（1的位置）开始一个个接着遍历
+3.遇到相同的就+1， 不同的-1， 直到结果=0 时，重新定义元素
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        index , count = 0 , 1      定义元素，从第一个位置0开始， 计数= 1，
+        for i in range(1, len(nums)):     从第二个元素遍历
+            if nums[index] == nums[i]:      如果遍历的元素= 定义的元素
+                count += 1        计数 + 1
+            else:                 不然，如果不相同
+                count -= 1         计数  -1
+                if count == 0:         当计数 = 0 时
+                    index = i         重新定义元素 = 目前遍历的元素
+                    count = 1       重新定义计数 = 1
+        return nums[index]      输出定义的元素
