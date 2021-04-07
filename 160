@@ -1,0 +1,29 @@
+160. Intersection of Two Linked Lists
+Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. 
+If the two linked lists have no intersection at all, return null.
+
+题目 :
+找出两个链接相加的点
+
+分析：
+1.用two pointer的方法解答
+2.把两个links 放在一起：
+        如果有相交的地方，一定会重逢
+				不然，永远不会重逢
+
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        p1 = headA     把p1 的指针 指向A链接的头
+        p2 = headB     把p2 的指针 指向A链接的头
+        
+        while p1 != p2:      当p1 指针不等于 p2 的指针时：
+            if not p1:             如果p1 指针在A 链接指向null 空的时候
+                p1 = headB      把p1 指针重新指向 B链接
+            else:           不指向null空的时候
+                p1 = p1.next      指针指向下一个
+            if not p2:              如果p2 指针在 B链接指向null 空的时候
+                p2 = headA      把p2 指针重新指向 A链接
+            else:         指针p2不指向null空的时候
+                p2 = p2.next      指向下一个
+        return p1      输出任意的指针都行
