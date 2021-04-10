@@ -1,0 +1,51 @@
+171. Excel Sheet Column Number
+Given a string columnTitle that represents the column title as appear in an Excel sheet, return its corresponding column number.
+
+For example:
+
+A -> 1
+B -> 2
+C -> 3
+...
+Z -> 26
+AA -> 27
+AB -> 28 
+...
+ 
+
+Example 1:
+
+Input: columnTitle = "A"
+Output: 1
+Example 2:
+
+Input: columnTitle = "AB"
+Output: 28
+Example 3:
+
+Input: columnTitle = "ZY"
+Output: 701
+Example 4:
+
+Input: columnTitle = "FXSHRXW"
+Output: 2147483647
+
+题目:
+找出excel 里面字母相对应的数字
+这道题跟168 相似
+
+思路：
+这里是26进制
+
+class Solution:
+    def titleToNumber(self,  s) -> int:
+        res = 0         设置输出结果= 0
+        for i in range(len(s)):    按照字母的长度，位置，一个个从左到右遍历，
+				                                       例如 ABC ， 先查A的位置
+            res = 26              因为是26进制，26个字母， 所以每次都 乘以6
+            res += ord(s[i]) - ord("A")+ 1      按照位置，从左到右遍历
+						             这里ord（）代表 字母 相对应的数字，
+												 减去 A，意思是和A 的差值，因为A 代表第一个字母，Z 到A 之间相差25
+												 然后再加上1
+												 
+              return res   返回答案
