@@ -1,0 +1,48 @@
+183. Customers Who Never Order
+SQL Schema
+Suppose that a website contains two tables, the Customers table and the Orders table. Write a SQL query to find all customers who never order anything.
+
+Table: Customers.
+
++----+-------+
+| Id | Name  |
++----+-------+
+| 1  | Joe   |
+| 2  | Henry |
+| 3  | Sam   |
+| 4  | Max   |
++----+-------+
+Table: Orders.
+
++----+------------+
+| Id | CustomerId |
++----+------------+
+| 1  | 3          |
+| 2  | 1          |
++----+------------+
+Using the above tables as example, return the following:
+
++-----------+
+| Customers |
++-----------+
+| Henry     |
+| Max       |
++-----------+
+
+题目：
+给出两个表格，一个是客户名单，一个是账单名单
+找出那些客户从来没有点过东西
+
+思路：
+SELECT      这里的select 是最后输出的表格最上面的名字
+FROM
+LEFT JOIN
+ON 
+WHERE
+
+答案：
+SELECT tb1.Name as Customers      这里的select 是最后输出的表格最上面的名字
+FROM Customers as tb1        复制Customer的表格，重新命名为table 1
+LEFT JOIN Orders as tb2     复制Order表格，命名为table 2，再把它left join
+ON tb1.Id = tb2.CustomerId      重合的位置在 两个表格的客户一样
+WHERE tb2.Id is null;      找出哪个没有账单
