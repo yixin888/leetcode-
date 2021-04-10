@@ -1,0 +1,54 @@
+168. Excel Sheet Column Title
+Given an integer columnNumber, return its corresponding column title as it appears in an Excel sheet.
+
+For example:
+
+A -> 1
+B -> 2
+C -> 3
+...
+Z -> 26
+AA -> 27
+AB -> 28 
+...
+ 
+
+Example 1:
+
+Input: columnNumber = 1
+Output: "A"
+Example 2:
+
+Input: columnNumber = 28
+Output: "AB"
+Example 3:
+
+Input: columnNumber = 701
+Output: "ZY"
+Example 4:
+
+Input: columnNumber = 2147483647
+Output: "FXSHRXW"
+
+题目:
+在Excel里面，字母相应数字
+按照数字给出相应的字母出来
+
+思路：
+这里是26进制
+不过字母的排序是从0开始而不是1，所以得减去1
+
+class Solution:
+    def convertToTitle(self, num: int) -> str:
+        res = ""            设置输出结果为空集
+        while num > 0:     当给出字母相应的数字 > 0 时，循环
+            res += chr((num -1) % 26 + ord("A"))   这里的答案 是从左到右依次相加
+               个位数以上取整数，26进制，
+							 因为之前减去1（序号），所以后面加上“A“， 因为从A开始
+												chr（）这里代表 数字变字母
+												ord（）代表 字母 相应的 数字
+												
+						num = (num-1) // 26    个位数，取余数
+            
+        return res[::-1]   因为之前是倒过来把数字一个个从右到左相加，
+				                             要将它反过来，例如 1+2= 12， 变成21
