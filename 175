@@ -1,0 +1,47 @@
+175. Combine Two Tables
+Table: Person
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| PersonId    | int     |
+| FirstName   | varchar |
+| LastName    | varchar |
++-------------+---------+
+PersonId is the primary key column for this table.
+Table: Address
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| AddressId   | int     |
+| PersonId    | int     |
+| City        | varchar |
+| State       | varchar |
++-------------+---------+
+AddressId is the primary key column for this table.
+ 
+
+Write a SQL query for a report that provides the following information for each person in the Person table, regardless if there is an address for each of those people:
+
+FirstName, LastName, City, State
+
+题目:
+将两个表选一部分合在一起
+按照 FirstName, LastName, City, State  的顺序
+
+思路：
+1.SELECT
+2.FROM
+3.LEFT JOIN / RIGHT JOIN .. ON
+的顺序写下，在每个每个的详细写
+select 部分最麻烦，可以留在最后再写
+4.最后最重要的是结尾的部分，别忘记“；”分号，不然会fail掉
+
+
+
+# Write your MySQL query statement below   
+SELECT tb1.FirstName as FirstName, tb1.LastName as LastName, tb2.City as City, tb2.State as State
+FROM Person as tb1
+LEFT JOIN Address as tb2
+ON tb1.PersonID = tb2.PersonID;
