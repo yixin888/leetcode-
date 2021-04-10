@@ -1,0 +1,45 @@
+172. Factorial Trailing Zeroes
+Given an integer n, return the number of trailing zeroes in n!.
+
+Follow up: Could you write a solution that works in logarithmic time complexity?
+
+ 
+
+Example 1:
+
+Input: n = 3
+Output: 0
+Explanation: 3! = 6, no trailing zero.
+Example 2:
+
+Input: n = 5
+Output: 1
+Explanation: 5! = 120, one trailing zero.
+Example 3:
+
+Input: n = 0
+Output: 0
+
+题目:
+找出阶乘的结果尾数有多少个0
+例如： 5！ = 5 * 4* 3*2*1 =120 ，里面尾数含有一个0
+300 尾数含有2 个0
+
+思路：
+1.尾数有多少个0 代表是10 的多少倍数平方
+   100 是10 的2 倍平方数
+    34500 是10 的2 倍平方数
+2.10 = 2 * 5， 这里可以看做有多少个2 和5相乘
+3.  因为是 阶乘，2肯定在5的前面，有5肯定有2
+4.  所以我们只看有多少个5，即数是多少个5 的倍数
+
+class Solution:
+    def trailingZeroes(self, n: int) -> int:
+        res = 0         结果设置为0
+        while n != 0:        当n不等于0时
+            res += n // 5     答案 + 每次n 除以 5 的倍数，即
+            n = n // 5       每次n 除以5 的倍数，这里包含特殊情况，因为n可能含有多个5
+        return res   最终输出结果
+
+
+
