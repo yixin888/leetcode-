@@ -1,0 +1,35 @@
+182. Duplicate Emails
+SQL Schema
+Write a SQL query to find all duplicate emails in a table named Person.
+
++----+---------+
+| Id | Email   |
++----+---------+
+| 1  | a@b.com |
+| 2  | c@d.com |
+| 3  | a@b.com |
++----+---------+
+For example, your query should return the following for the above table:
+
++---------+
+| Email   |
++---------+
+| a@b.com |
++---------+
+
+题目:
+找出重复的email
+
+思路：
+1.用原来的table（ person） 来创建两个table （1和2）
+SELECT
+FROM
+INNER/ LEFT/ RIGHT JOIN
+ON ... AND
+的顺序
+
+# Write your MySQL query statement below
+SELECT DISTINCT tb1.email
+FROM Person as tb1
+INNER JOIN Person as tb2
+ON tb1.Email = tb2.Email And tb1.Id != tb2.Id;
